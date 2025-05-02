@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glamup Saree Draping & Hair Artistry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background-image: url('backgroundwithhair.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 120px 20px 70px;
+    }
+
+    .header-box {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px 30px;
+      border-radius: 20px;
+      display: inline-block;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5em;
+      margin-bottom: 10px;
+      color: #fff;
+      text-shadow: 3px 3px 12px rgba(255, 255, 255, 0.95);
+      animation: fadeInGlow 1.5s ease-out forwards;
+    }
+
+    header p {
+      color: #ffffff;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.4em;
+      letter-spacing: 1px;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.95);
+      animation: bounceTagline 2s ease-in-out;
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInGlow {
+      0% { opacity: 0; transform: scale(0.95); text-shadow: none; }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes bounceTagline {
+      0% { opacity: 0; transform: translateY(30px); }
+      50% { opacity: 1; transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 30px 0 0;
+    }
+
+    nav button {
+      background-color: #800040;
+      color: white;
+      border: 2px solid white;
+      margin: 0 10px;
+      padding: 12px 25px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: 'Raleway', sans-serif;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    nav button:hover {
+      background-color: white;
+      color: #800040;
+      border-color: #800040;
+      box-shadow: 0 8px 20px rgba(128, 0, 64, 0.4);
+      transform: scale(1.07);
+    }
+
+    section {
+      display: none;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: black;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    form input, form textarea {
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    form button[type="submit"] {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 6px 18px;
+  font-size: 0.85em;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  width: auto;
+  align-self: center;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+
+form button[type="submit"]:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 500px;
+    }
+      .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      display: none;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+    .testimonial-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.testimonial-tile {
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-tile:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-text {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.testimonial-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.testimonial-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+.gallery-subheading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.gallery-subheading h3 {
+  font-size: 1.8em;
+  font-weight: bold;
+  color:#800040;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.gallery-heading {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.gallery-heading h3 {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #800040;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.gallery-heading {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.gallery-heading h3,
+.gallery-heading h2 {
+  font-size: 1.8em;
+  font-weight: bold;
+  color:#800040;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.main-gallery-title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <div class="header-box">
+        <h1>Glamup Saree Draping & Hair Artistry</h1>
+        <p>Elegance in Every pleat and style in every Strand</p>
+      </div>
+    </header>
+
+    <nav style="justify-content: center; text-align: center;">
+      <div style="display: inline-flex; gap: 20px;"> <button onclick="showSection('gallery')">Gallery</button>
+      <button onclick="showSection('services')">Services</button>
+      <button onclick="showSection('book')">Book Services</button>
+      <button onclick="showSection('testimonials')">Testimonials</button>
+          </div>
+    </nav>
+
+    <section id="gallery" style="position: relative;">
+      <button class="close-icon" style="position: absolute; top: 15px; right: 20px;" onclick="closeSections()">&times;</button>
+      <div class="gallery-heading main-gallery-title">
+        <h2>Gallery</h2>
+      </div>
+      
+      <div class="gallery">
+        <div class="gallery-subheading">
+            <h3>Saree Pre pleating & Box folding</h3>
+          </div>
+         
+        <img src="Saree1.jpg" alt="Saree 1">
+        <img src="Saree2.jpg" alt="Saree 2">
+        <img src="Saree3.jpg" alt="Saree 3">
+        <img src="Saree4.jpg" alt="Saree 4">
+        <img src="Saree5.jpg" alt="Saree 5">
+        <img src="Saree6.jpg" alt="Saree 6">
+        <img src="Saree7.jpg" alt="Saree 7">
+        <img src="Saree8.jpg" alt="Saree 8">
+        <img src="Saree9.jpg" alt="Saree 9">
+        <img src="Saree10.jpg" alt="Saree 10">
+        <img src="Saree11.jpg" alt="Saree 11">
+        <img src="Saree12.jpg" alt="Saree 12">
+        <img src="Saree13.jpg" alt="Saree 13">
+        <img src="Saree14.jpg" alt="Saree 14">
+      </div>
+
+      <div class="gallery">
+        <div class="gallery-subheading">
+            <h3>Saree Draping</h3>
+          </div>
+         <img src="sareedrape1.jpg" alt="sareedrape1">
+        <img src="sareedrape2.jpg" alt="sareedrape2">
+        <img src="sareedrape3.jpg" alt="sareedrape3">
+        <img src="sareedrape4.jpg" alt="sareedrape4">
+        <img src="sareedrape5.jpg" alt="sareedrape5">
+        <img src="sareedrape6.jpg" alt="sareedrape6">
+        <img src="sareedrape7.jpg" alt="sareedrape7">
+        <img src="sareedrape8.jpg" alt="sareedrape8">
+        <img src="Sareedrapeanddupattadrape.png" alt="sareedrape6">
+      </div>
+      <div class="gallery">
+        <div class="gallery-subheading">
+            <h3>Saree Draping for pooja events</h3>
+          </div>
+         <img src="sareedrapeforpooja1.jpg" alt="sareedrapeforpooja1">
+        <img src="sareedrapeforpooja2.jpg" alt="sareedrapeforpooja2">
+
+      <div class="gallery">
+        <div class="gallery-heading">
+            <h3>Hairstyling</h3>
+          </div>
+        <img src="Hair1.jpg" alt="Hair 1">
+        <img src="Hair2.jpg" alt="Hair 2">
+        <img src="Hair3.jpg" alt="Hair 3">
+        <img src="Hair4.jpg" alt="Hair 4">
+        <img src="Hair5.jpg" alt="Hair 5">
+        <img src="Hair6.jpg" alt="Hair 5">
+              </div>
+    </section>
+
+    <section id="services" style="position: relative;">
+        <button class="close-icon" style="position: absolute; top: 15px; right: 20px;" onclick="closeSections()">&times;</button>
+        <div class="gallery-heading main-gallery-title">
+            <h2>Services</h2>
+          </div>
+          
+        <p style="max-width: 700px; margin: 0 auto 20px auto; font-size: 1.1em; text-align: center; line-height: 1.6;">
+          Our professional draping and styling services ensure you look flawless on your special day. Whether you're attending a wedding, cultural event, or celebration, each service is crafted to enhance your grace and confidence.
+        </p>
+        <p style="max-width: 700px; margin: 0 auto 20px auto; font-size: 1.1em; text-align: center; line-height: 1.6; padding-left: 40px;">
+            The process includes dropping off your saree two days in advance, providing your measurements, and picking it up from my location in San Ramon.
+          </p>
+          <p style="max-width: 700px; margin: 0 auto; font-size: 1.1em; text-align: center; line-height: 1.6; padding-left: 40px;">
+            Travel charges apply for the first and second service options if the distance exceeds 5 miles.
+          </p>
+        <ul>
+          <li><strong>Saree Draping with pleated pallu - $65</strong><br><small>Perfectly structured pleats for an elegant, traditional look. Ideal for weddings and formal occasions.I get the pre-pleated and box-folded saree ready and drape it onsite before your event.</small></li>
+          <li><strong>Saree Draping with open pallu - $50</strong><br><small>Free-flowing style for a modern and graceful appearance. Great for parties and festive events.I get the pre-pleated and box-folded saree ready and drape it onsite before your event.</small></li>
+          <li><strong>Dupatta pre-pleating and box folding - $25</strong><br><small>Crisp and neat folds to complement lehengas and salwar suits, saving you prep time.You will handle the draping yourself</small></li>
+          <li><strong>Saree pre-pleating and box folding - $35</strong><br><small>Ready-to-wear convenience with professional pleats, ensuring hassle-free draping.You will handle the draping yourself</small></li>
+        </ul>
+      </section>
+
+    <section id="book">
+      <button class="close-icon" style="position: absolute; top: 15px; right: 20px;" onclick="closeSections()">&times;</button>
+      <div class="gallery-heading main-gallery-title">
+        <h2>Book Services</h2>
+      </div>
+      
+      <form action="https://formspree.io/f/xldbjblw" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <textarea name="service" placeholder="Describe the service you need" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+    <section id="testimonials" style="position: relative;">
+        <button class="close-icon" style="position: absolute; top: 15px; right: 20px;" onclick="closeSections()">&times;</button>
+      
+        <div class="gallery-heading main-gallery-title">
+            <h2>Client Testimonials</h2>
+          </div>
+          
+      
+        <!-- Text-Based Testimonials -->
+      
+        <div class="testimonial-tiles">
+          <!-- Tile 1 -->
+          <div class="testimonial-tile">
+            <p class="testimonial-text">"Absolutely stunning work! The draping stayed perfect all day and I received so many compliments!"</p>
+            <strong class="testimonial-name">– Priya R.</strong>
+          </div>
+      
+          <!-- Tile 2 -->
+          <div class="testimonial-tile">
+            <p class="testimonial-text">"Professional, punctual, and creative. The hairstyling was elegant and matched my outfit perfectly."</p>
+            <strong class="testimonial-name">– Aisha M.</strong>
+          </div>
+      
+          <!-- Tile 3 -->
+<div class="testimonial-tile">
+    <p class="testimonial-text">"Your saree draping made me feel like royalty! It stayed perfect the entire ceremony, and everyone kept asking who styled me."</p>
+    <strong class="testimonial-name">– Neha S.</strong>
+  </div>
+  
+  <!-- Tile 4 -->
+  <div class="testimonial-tile">
+    <p class="testimonial-text">"Absolutely loved the neatness and precision of the draping. It looked great in photos and felt very secure."</p>
+    <strong class="testimonial-name">– Deepika V.</strong>
+  </div>
+  
+  <!-- Tile 5 -->
+  <div class="testimonial-tile">
+    <p class="testimonial-text">"You arrived on time, understood exactly what I wanted, and executed it beautifully. Thank you for making my big day stress-free!"</p>
+    <strong class="testimonial-name">– Shreya K.</strong>
+  </div>
+  
+  <!-- Tile 6 -->
+  <div class="testimonial-tile">
+    <p class="testimonial-text">"The pleats were perfect, and the style matched my jewelry and blouse just right. Highly recommend your service to every bride-to-be!"</p>
+    <strong class="testimonial-name">– Aarti P.</strong>
+  </div>
+  
+  <!-- Tile 7 -->
+  <div class="testimonial-tile">
+    <p class="testimonial-text">"I’ve never felt so confident in a saree before. It looked stylish and stayed in place even after hours of dancing!"</p>
+    <strong class="testimonial-name">– Meera J.</strong>
+  </div>
+  
+        </div>
+      
+        <!-- WhatsApp Image Testimonials -->
+        
+        <div class="testimonial-tiles">
+          <!-- WhatsApp Image 1 -->
+          <div class="testimonial-tile">
+            <img src="whatsapp.jpg" alt="WhatsApp Feedback 1" class="testimonial-img">
+            <strong class="testimonial-name">– Sravanthi</strong>
+          </div>
+      
+          <!-- WhatsApp Image 2 -->
+          <div class="testimonial-tile">
+            <img src="whatsapp2.jpg" alt="WhatsApp Feedback 2" class="testimonial-img">
+            <strong class="testimonial-name">–Priya</strong>
+          </div>
+      
+          <!-- WhatsApp Image 3 -->
+          <div class="testimonial-tile">
+            <img src="whatsapp3.jpg" alt="WhatsApp Feedback 2" class="testimonial-img">
+            <strong class="testimonial-name">– Madhavi</strong>
+          </div>
+          <!-- WhatsApp Image 4 -->
+          <div class="testimonial-tile">
+            <img src="whatsapp4.jpg" alt="WhatsApp Feedback 2" class="testimonial-img">
+            <strong class="testimonial-name">– Kala</strong>
+          </div>
+          <!-- WhatsApp Image 5 -->
+          <div class="testimonial-tile">
+            <img src="whatsapp5.jpg" alt="WhatsApp Feedback 2" class="testimonial-img">
+            <strong class="testimonial-name">– Vijaya</strong>
+          </div>
+        </div>
+      </section>
+      
+      
+     
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('visible');
+        sec.style.opacity = 0;
+        sec.style.transform = 'translateY(20px)';
+      });
+
+      const target = document.getElementById(id);
+      target.classList.add('visible');
+      target.scrollIntoView({ behavior: 'smooth' });
+
+      setTimeout(() => {
+        target.style.opacity = 1;
+        target.style.transform = 'translateY(0)';
+      }, 50);
+    }
+
+    function closeSections() {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('visible');
+        sec.style.opacity = 0;
+        sec.style.transform = 'translateY(20px)';
+      });
+    }
+  </script>
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="Expanded view">
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('visible');
+        sec.style.opacity = 0;
+        sec.style.transform = 'translateY(20px)';
+      });
+
+      const target = document.getElementById(id);
+      target.classList.add('visible');
+      target.scrollIntoView({ behavior: 'smooth' });
+
+      setTimeout(() => {
+        target.style.opacity = 1;
+        target.style.transform = 'translateY(0)';
+      }, 50);
+    }
+
+    function closeSections() {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('visible');
+        sec.style.opacity = 0;
+        sec.style.transform = 'translateY(20px)';
+      });
+    }
+
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
+
+
